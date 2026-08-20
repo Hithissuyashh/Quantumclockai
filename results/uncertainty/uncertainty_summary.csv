@@ -1,0 +1,9 @@
+metric,value
+RMSE_Hz,0.00010683469736250117
+MAE_Hz,8.466566941933706e-05
+Mean_uncertainty_Hz,5.030115062254481e-05
+Median_uncertainty_Hz,4.659747355617583e-05
+Maximum_uncertainty_Hz,0.00014005649427417666
+Coverage_percent,62.64999999999999
+MC_samples,50.0
+Test_samples,2000.0

@@ -1,0 +1,13 @@
+metric,value
+RMSE_Hz,0.0001070371872629039
+MAE_Hz,8.473410707665607e-05
+Raw_calibration_coverage_percent,64.0
+Calibrated_calibration_coverage_percent,95.0
+Calibration_factor,4.852758884429932
+Raw_evaluation_coverage_percent,62.4
+Calibrated_evaluation_coverage_percent,94.89999999999999
+Mean_raw_uncertainty_Hz,5.0079859647667035e-05
+Mean_calibrated_uncertainty_Hz,0.0002430254826322198
+MC_samples,50.0
+Calibration_samples,1000.0
+Evaluation_samples,1000.0

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QuantumClock WebSocket Test</title>
+</head>
+
+<body>
+    <h1>QuantumClock WebSocket Test</h1>
+
+    <div id="status">Connecting...</div>
+    <pre id="output"></pre>
+
+    <script>
+        const status = document.getElementById("status");
+        const output = document.getElementById("output");
+
+        const ws = new WebSocket(
+            "ws://127.0.0.1:8000/ws/clock"
+        );
+
+        ws.onopen = () => {
+            status.textContent = "CONNECTED";
+        };
+
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+
+            output.textContent =
+                JSON.stringify(data, null, 2);
+        };
+
+        ws.onerror = () => {
+            status.textContent = "WEBSOCKET ERROR";
+        };
+
+        ws.onclose = () => {
+            status.textContent = "DISCONNECTED";
+        };
+    </script>
+</body>
+</html>
