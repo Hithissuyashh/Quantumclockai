@@ -199,6 +199,20 @@ class QuantumClock:
 
             "servo_correction":
                 correction,
+
+            # Genuine quantum-control configuration/state.
+            "probe_offset":
+                self.discriminator.probe_offset,
+
+            "interrogation_time":
+                self.ramsey.interrogation_time,
+
+            # The discriminator's internal derived output is already
+            # represented by measured_offset. We intentionally leave the
+            # frontend-specific discriminator field unavailable until the
+            # discriminator implementation is exported/defined.
+            "discriminator":
+                None,
         }
 
         # ==================================================
@@ -291,6 +305,23 @@ class QuantumClock:
 
                 "prediction_count":
                     self.ai_predictor.prediction_count,
+
+                "required_history":
+                    self.ai_predictor.SEQUENCE_LENGTH,
+
+                # No predictive distribution is produced by the current
+                # Transformer inference path. Keep uncertainty explicit.
+                "uncertainty":
+                    None,
+
+                "uncertainty_calibrated":
+                    False,
+
+                "interval_low":
+                    None,
+
+                "interval_high":
+                    None,
             },
         })
 
@@ -303,6 +334,9 @@ class QuantumClock:
         # --------------------------------------------------
 
         self.environment.reset()
+
+        # Clear accumulated stochastic state as part of a full clock reset.
+        self.noise.reset_state()
 
         self.oscillator.reset()
 

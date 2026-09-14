@@ -122,6 +122,7 @@ class NoiseModel:
         enabled: Optional[Set[str]] = None,
     ) -> None:
         # Independent random stream (modern NumPy API, better statistics)
+        self.seed = seed
         self.rng = np.random.default_rng(seed)
 
         # Mutable state for accumulating processes
@@ -431,6 +432,7 @@ class NoiseModel:
         Useful between independent simulation runs without re-creating
         the object (preserves the RNG stream and enabled set).
         """
+        self.rng = np.random.default_rng(self.seed)
         self.random_walk_state = 0.0
         self.flicker_state     = 0.0
         self.laser_phase       = 0.0

@@ -7,6 +7,7 @@ class LaboratoryEnvironment:
     def __init__(self, seed=None, dt=1.0):
         import math
 
+        self.seed = seed
         self.rng = np.random.default_rng(seed)
 
         self.dt = dt
@@ -90,5 +91,15 @@ class LaboratoryEnvironment:
         }
 
     def reset(self):
+        """Reset dynamic state while preserving the configured environment."""
 
-        self.__init__()
+        self.rng = np.random.default_rng(self.seed)
+
+        self.temperature = 300.0
+        self.magnetic = 50e-6
+        self.laser_power = 1.0
+        self.pressure = 101325.0
+        self.humidity = 45.0
+
+        self.time = 0.0
+        self.history = []
